@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongodb": "^6.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
@@ -11,7 +12,7 @@
   },
   "name": "backend",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "server.js",
   "author": "",
   "license": "ISC",
   "description": ""
