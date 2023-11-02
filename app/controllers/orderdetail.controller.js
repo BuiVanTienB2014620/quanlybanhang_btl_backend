@@ -19,23 +19,23 @@ exports.create = async (req, res, next) => {
   }
 };
 
-exports.findAll = async (req, res, next) => {
-  try {
-    const { SoDonDH } = req.query;
-    let orderDetails = [];
+// exports.findAll = async (req, res, next) => {
+//   try {
+//     const { SoDonDH } = req.query;
+//     let orderDetails = [];
 
-    if (SoDonDH) {
-      orderDetails = await orderDetailService.findBySoDonDH(SoDonDH);
-    } else {
-      orderDetails = await orderDetailService.find({});
-    }
+//     if (SoDonDH) {
+//       orderDetails = await orderDetailService.findBySoDonDH(SoDonDH);
+//     } else {
+//       orderDetails = await orderDetailService.find({});
+//     }
 
-    return res.json(orderDetails);
-  } catch (error) {
-    console.error(error);
-    return next(new ApiError(500, 'An error occurred while retrieving order Details'));
-  }
-};
+//     return res.json(orderDetails);
+//   } catch (error) {
+//     console.error(error);
+//     return next(new ApiError(500, 'An error occurred while retrieving order Details'));
+//   }
+// };
 
 exports.findOne = async (req, res, next) => {
   try {
@@ -90,12 +90,12 @@ exports.deleteAll = async (req, res, next) => {
   }
 };
 
-exports.findAllTrangThaiDH = async (req, res, next) => {
-  try {
-    const orderDetails = await orderDetailService.findAllTrangThaiDH();
-    return res.json(orderDetails);
-  } catch (error) {
-    console.error(error);
-    return next(new ApiError(500, 'An error occurred while retrieving favorite order Details'));
-  }
-};
+// exports.findAllTrangThaiDH = async (req, res, next) => {
+//   try {
+//     const orderDetails = await orderDetailService.findAllTrangThaiDH();
+//     return res.json(orderDetails);
+//   } catch (error) {
+//     console.error(error);
+//     return next(new ApiError(500, 'An error occurred while retrieving favorite order Details'));
+//   }
+// };

@@ -31,11 +31,11 @@ class OrderDetailService {
         return result.value;
     }
 
-    async findBySoDonDH(SoDonDH) {
-        return await this.find({
-            SoDonDH: { $regex: new RegExp(SoDonDH), $options: "i" },
-        });
-    }
+    // async findBySoDonDH(SoDonDH) {
+    //     return await this.find({
+    //         SoDonDH: { $regex: new RegExp(SoDonDH), $options: "i" },
+    //     });
+    // }
 
     async find(filter) {
         const cursor = await this.OrderDetail.find(filter);
