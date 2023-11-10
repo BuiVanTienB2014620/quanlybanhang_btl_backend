@@ -4,6 +4,7 @@ const cors = require("cors");
 // Import các lớp dịch vụ cho các bảng dữ liệu
 
 const UserSRouter = require("./app/routes/user.route");
+const ProductSRouter = require("./app/routes/hanghoa.route");
 
 
 
@@ -20,6 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", UserSRouter);
+app.use("/api/products", ProductSRouter);
 
 
 

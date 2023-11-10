@@ -108,9 +108,11 @@ exports.login = async (req, res, next) => {
 
   try {
     const userService = new UserService(MongoDB.client);
-    const user = await userService.login(email, password);
+    const  user  = await userService.login(email, password);
+    
+
     if (user) {
-      res.status(200).json({ message: 'Đăng nhập thành công' });
+      res.status(200).json({ message: 'Đăng nhập thành công', user :  user  });
     } else {
       res.status(401).json({ message: 'Đăng nhập thất bại' });
     }
@@ -118,4 +120,22 @@ exports.login = async (req, res, next) => {
     res.status(500).json({ message: 'Lỗi máy chủ' });
   }
 };
+
+exports.logout = async (req, res, next) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ message: 'Email là trường bắt buộc' });
+  }
+
+  try {
+    const userService = new UserService(MongoDB.client);
+    await userService.logout(email);
+    res.status(200).json({ message: 'Đăng xuất thành công' });
+  } catch (error) {
+    res.status(500).json({ message: 'Lỗi máy chủ' });
+  }
+};
+
+
 

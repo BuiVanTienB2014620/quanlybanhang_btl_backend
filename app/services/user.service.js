@@ -2,16 +2,23 @@ const { ObjectId } = require("mongodb");
 
 class UserService {
   constructor(client) {
-    this.Users = client.db().collection("Users");
+    this.Users = client.db().collection("KhachHang");
+    this.NhanViens = client.db().collection("NhanVien");
   }
 
   extractUserData(payload) {
+    // Trong extractUserData method
+    // Trong extractUserData method
     const user = {
       name: payload.name,
-
       email: payload.email,
       password: payload.password,
+      address: payload.address,
+      phoneNumber: payload.phoneNumber,
+      role: payload.role || "user",
+      token: payload.token || null, // Thêm trường token
     };
+
     // Them nguoi dung vao bang User
     Object.keys(user).forEach(
       (key) => user[key] === undefined && delete user[key]
@@ -22,12 +29,13 @@ class UserService {
   async create(payload) {
     const user = this.extractUserData(payload);
     const result = await this.Users.findOneAndUpdate(
-      user,
+      { email: user.email },
       {
         $set: {
           name: user.name,
           email: user.email,
           password: user.password,
+          role: user.role,
         },
       },
       { returnDocument: "after", upsert: true }
@@ -71,17 +79,28 @@ class UserService {
     const result = await this.Users.deleteMany({});
     return result.deletedCount;
   }
-  async login(email, password) {
-    
-    const user = await this.Users.findOne({ email });
 
-    if (user) {
-     
-      if (user.password === password) {
-        
-        return user;
-      } 
-    } 
+
+  
+  async login(email, password) {
+    let user  =  null;
+      user = await this.Users.findOne({ email });
+     if(user === null){
+      user = await this.NhanViens.findOne({ email });
+     }
+
+
+  
+    if (user && user.password === password) {
+  
+      return user;
+    } else {
+      return null;
+    }
+  }
+  
+  async logout(email) {
+    await this.Users.updateOne({ email }, { $set: { token: null } });
   }
 }
 
