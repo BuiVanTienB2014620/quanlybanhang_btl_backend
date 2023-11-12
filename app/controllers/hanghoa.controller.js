@@ -14,22 +14,23 @@ exports.create = async (req, res, next) => {
     return res.send(document);
   } catch (error) {
     console.log(error);
-    return next(new ApiError(500, "An error occurred while creating a product"));
+    return next(
+      new ApiError(500, "An error occurred while creating a product")
+    );
   }
 };
-
-exports.findProductById = async (req, res, next) => {
+exports.findOne = async (req, res, next) => {
   try {
     const productService = new ProductService(MongoDB.client);
-    const document = await productService.findProductById(req.params.id);
+    const document = await productService.findById(req.params.id);
     if (!document) {
-      return next(new ApiError(404, "Product not found"));
+      return next(new ApiError(404, "product not found"));
     }
     return res.send(document);
   } catch (error) {
     console.log(error);
     return next(
-      new ApiError(500, `Error retrieving product with id=${req.params.id}`)
+      new ApiError(500, `Error retrieving contact with id=${req.params.id} `)
     );
   }
 };

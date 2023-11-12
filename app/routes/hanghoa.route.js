@@ -12,7 +12,7 @@ router
 
 router
   .route("/:id")
-  .get(products.findProductById)
+  .get(products.findOne)
   .put(products.update)
   .delete(products.delete);
 

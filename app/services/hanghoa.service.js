@@ -12,6 +12,7 @@ class ProductService {
       Gia: payload.Gia,
       SoLuongHangHoa: payload.SoLuongHangHoa,
       GhiChu: payload.GhiChu,
+      imgURL: payload.imgURL,
     };
 
     // Remove undefined fields
@@ -42,25 +43,31 @@ class ProductService {
     return await cursor.toArray();
   }
 
-  async findProductById(id) {
-    const product = await this.Products.findOne({ _id: new ObjectId(id) });
-    return product;
+  async findById(id) {
+    return await this.Products.findOne({
+      _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
+  });
   }
 
   async update(id, payload) {
-    const filter = { _id: new ObjectId(id) };
-    const update = { $set: this.extractProductData(payload) };
-    const result = await this.Products.findOneAndUpdate(filter, update, {
-      returnOriginal: false,
-    });
-    return result.value;
-  }
+    const filter = {
+        _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
+    };
+    const update = this.extractProductData(payload);
+    const result = await this.Products.findOneAndUpdate(
+        filter,
+        { $set: update },
+        { returnDocument: "after" }
+    );
+    return result;
+}
+
 
   async delete(id) {
     const result = await this.Products.findOneAndDelete({
       _id: ObjectId.isValid(id) ? new ObjectId(id) : null,
     });
-    return result.value;
+    return result;
   }
 
   async deleteAll() {
