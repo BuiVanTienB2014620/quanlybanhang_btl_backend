@@ -91,16 +91,4 @@ exports.findAll = async (req, res, next) => {
   return res.send(documents);
 };
 
-exports.deleteAll = async (req, res, next) => {
-  try {
-    const productService = new ProductService(MongoDB.client);
-    const deletedCount = await productService.deleteAll();
-    return res.send({
-      message: `${deletedCount} products were deleted successfully`,
-    });
-  } catch (error) {
-    return next(
-      new ApiError(500, "An error occurred while removing all products")
-    );
-  }
-};
+

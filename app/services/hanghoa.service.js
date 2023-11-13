@@ -70,10 +70,7 @@ class ProductService {
     return result;
   }
 
-  async deleteAll() {
-    const result = await this.Products.deleteMany({});
-    return result.deletedCount;
-  }
+  
 }
 
 module.exports = ProductService;

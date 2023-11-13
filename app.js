@@ -5,6 +5,9 @@ const cors = require("cors");
 
 const UserSRouter = require("./app/routes/user.route");
 const ProductSRouter = require("./app/routes/hanghoa.route");
+const EmployeeSRouter = require("./app/routes/nhanvien.route");
+const OrderSRouter = require("./app/routes/dathang.route");
+const DetailsRouter = require("./app/routes/chitietdathang.route");
 
 
 
@@ -22,6 +25,9 @@ app.use(express.json());
 
 app.use("/api/users", UserSRouter);
 app.use("/api/products", ProductSRouter);
+app.use("/api/employees", EmployeeSRouter);
+app.use("/api/orders", OrderSRouter);
+app.use("/api/details", DetailsRouter);
 
 
 

@@ -6,7 +6,7 @@ router
   .route("/")
   .get(products.findAll)
   .post(products.create)
-  .delete(products.deleteAll);
+ 
 
 
 

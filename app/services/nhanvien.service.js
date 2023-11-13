@@ -13,8 +13,7 @@ class EmployeeService {
       address: payload.address,
       phoneNumber: payload.phoneNumber,
       role: payload.role || "employee",
-      chucVu: payload.chucVu || "nhanvien", // Thêm trường chucVu
-      token: payload.token || null,
+      // token: payload.token || null,
     };
 
     Object.keys(employee).forEach(
