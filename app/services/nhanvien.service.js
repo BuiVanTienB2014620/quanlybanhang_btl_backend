@@ -13,6 +13,7 @@ class EmployeeService {
       address: payload.address,
       phoneNumber: payload.phoneNumber,
       role: payload.role || "employee",
+      imgURL: payload.imgURL,
       // token: payload.token || null,
     };
 
@@ -34,6 +35,7 @@ class EmployeeService {
           password: employee.password,
           role: employee.role,
           chucVu: employee.chucVu,
+          imgURL: payload.imgURL,
         },
       },
       { returnDocument: "after", upsert: true }

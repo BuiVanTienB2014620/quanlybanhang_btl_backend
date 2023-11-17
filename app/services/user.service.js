@@ -16,7 +16,8 @@ class UserService {
       address: payload.address,
       phoneNumber: payload.phoneNumber,
       role: payload.role || "user",
-      token: payload.token || null, // Thêm trường token
+      token: payload.token || null,
+      imgURL: payload.imgURL, // Thêm trường token
     };
 
     // Them nguoi dung vao bang User
@@ -36,6 +37,7 @@ class UserService {
           email: user.email,
           password: user.password,
           role: user.role,
+          imgURL: payload.imgURL,
         },
       },
       { returnDocument: "after", upsert: true }

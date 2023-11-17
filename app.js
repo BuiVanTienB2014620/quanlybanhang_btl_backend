@@ -8,6 +8,7 @@ const ProductSRouter = require("./app/routes/hanghoa.route");
 const EmployeeSRouter = require("./app/routes/nhanvien.route");
 const OrderSRouter = require("./app/routes/dathang.route");
 const DetailsRouter = require("./app/routes/chitietdathang.route");
+const CartSRouter = require("./app/routes/giohang.route");
 
 
 
@@ -28,6 +29,7 @@ app.use("/api/products", ProductSRouter);
 app.use("/api/employees", EmployeeSRouter);
 app.use("/api/orders", OrderSRouter);
 app.use("/api/details", DetailsRouter);
+app.use("/api/carts", CartSRouter);
 
 
 
