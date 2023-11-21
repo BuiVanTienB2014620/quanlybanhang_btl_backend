@@ -36,6 +36,8 @@ class UserService {
           name: user.name,
           email: user.email,
           password: user.password,
+          address: user.address,
+          phoneNumber: user.phoneNumber,
           role: user.role,
           imgURL: payload.imgURL,
         },

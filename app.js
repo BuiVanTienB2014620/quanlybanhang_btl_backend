@@ -2,7 +2,6 @@
 const express = require("express");
 const cors = require("cors");
 // Import các lớp dịch vụ cho các bảng dữ liệu
-
 const UserSRouter = require("./app/routes/user.route");
 const ProductSRouter = require("./app/routes/hanghoa.route");
 const EmployeeSRouter = require("./app/routes/nhanvien.route");
@@ -11,8 +10,17 @@ const DetailsRouter = require("./app/routes/chitietdathang.route");
 const CartSRouter = require("./app/routes/giohang.route");
 
 
-
-
+const XlsxPopulate = require('xlsx-populate');
+ 
+// Load a new blank workbook
+XlsxPopulate.fromBlankAsync()
+    .then(workbook => {
+        // Modify the workbook.
+        workbook.sheet("Sheet1").cell("A1").value("This is neat!");
+ 
+        // Write to file.
+        return workbook.toFileAsync("./out.xlsx");
+    });
 
 const ApiError = require("./app/api-error");
 
